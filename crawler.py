@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 import requests
 
-url = "fdgd.google.com"
-try:
-    get_resp = requests.get("https://" + url)
-    print(get_resp)
-except:
-    print("url NOT FOUND")
+def seek(url):
+    try:
+        return requests.get("https://" + url)
+    except:
+        pass
+
+target_website = "google.com"
+with open ("subdomainlist.txt", "r") as wordlist:
+    for word in wordlist:
+        seek_url = word.strip() + "." + target_website
+        resp = seek(seek_url)
+        if resp:
+            print("[+] Detected Subdomain --> " + seek_url)
