@@ -1,0 +1,15 @@
+www
+mail
+ftp
+blog
+img
+news
+chat
+accounts
+account
+images
+maps
+webmail
+wiki
+admin
+pay
