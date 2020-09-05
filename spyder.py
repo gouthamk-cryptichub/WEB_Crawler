@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 import requests
 import re
-
-def seek(url):
-    try:
-        return requests.get("https://" + url)
-    except:
-        pass
+import urlparse
 
 target_website = "google.com"
-page = seek(target_website).content
-links = re.findall('(?:href=")(.*?)"', page)
+target_URL = "http://" + target_website
+organisation = target_website.split(".")[0]
+def get_links(website):
+    page = requests.get(target_URL).content
+    return re.findall('(?:href=")(.*?)"', page)
 
-print(links)
-#test each link for response
+links = get_links(target_website)
+for url in links:
+    url = urlparse.urljoin(target_URL, url)
+    if organisation in url:
+        print(url)
