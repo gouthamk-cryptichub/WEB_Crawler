@@ -14,3 +14,9 @@ with open ("subdomainlist.txt", "r") as wordlist:
         resp = seek(seek_url)
         if resp:
             print("[+] Detected Subdomain --> " + seek_url)
+            with open("directory.txt", "r") as word_list:
+                for wrd in word_list:
+                    seek_dir = seek_url + "/" + wrd.strip()
+                    resp_dir = seek(seek_dir)
+                    if resp_dir:
+                        print("\t[+] Found Page --> " + seek_dir)
